@@ -29,6 +29,22 @@ app.use("/test",testRoutes);
 app.use("/esewa",esewaRoutes);
 app.use("/user",userRoutes);
 
+app.use("/add",(req,res)=>{
+  const {n1,n2} = req.body;
+  const respond = {result : n1+n2}
+  console.log(respond)
+  res.send(respond);
+})
+
+app.use("/login",(req,res)=>{
+  const {username, password}=req.body
+
+  if(username==="rushal" && password==="1234"){
+    res.send({...req.body,loggedIn:true})
+  }
+
+})
+
 //host port
 dotenv.config();
 const port = process.env.PORT || 5000;

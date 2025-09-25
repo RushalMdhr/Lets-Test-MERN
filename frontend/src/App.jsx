@@ -4,16 +4,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const showMessage = async () => {
-    console.log('fetching')
-    const res = await fetch("http://localhost:5000/test/message")
-    console.log('fetched')
+    console.log("fetching");
+    const res = await fetch("http://localhost:5000/test/message");
+    console.log("fetched");
     if (res.ok) {
-      console.log('response ok')
+      console.log("response ok");
     }
-    const data = await res.text()
-    toast.success(data)
-    console.log('data received')
-  }
+    const data = await res.text();
+    toast.success(data);
+    console.log("data received");
+  };
   return (
     <>
       <ToastContainer />
@@ -24,25 +24,36 @@ function App() {
       >
         Click For Backend Message
       </button>
-      <a href="/login">
-        <button
-          className="btn bg-cyan-100 text-cyan-600 m-3 p-2 rounded-2xl border-2 border-cyan-600 hover:bg-cyan-200"
-        >
-          Login
-        </button>
-      </a>
-      <a href="/admin">
-        <button
-          className="btn bg-cyan-100 text-cyan-600 m-3 p-2 rounded-2xl border-2 border-cyan-600 hover:bg-cyan-200"
-        >
-          Admin Login
-        </button>
-      </a>
-        <main className="py-3">
-          <Outlet />
-        </main>
-      </>
-      );
+      <Link
+        to="/cal"
+        className="btn bg-cyan-100 text-cyan-600 m-3 p-2 rounded-2xl border-2 border-cyan-600 hover:bg-cyan-200"
+      >
+        Calculate
+      </Link>
+      <Link
+        to="/store"
+        className="btn bg-cyan-100 text-cyan-600 m-3 p-2 rounded-2xl border-2 border-cyan-600 hover:bg-cyan-200"
+      >
+        Login
+      </Link>
+      <Link
+        to="/store2"
+        className="btn bg-cyan-100 text-cyan-600 m-3 p-2 rounded-2xl border-2 border-cyan-600 hover:bg-cyan-200"
+      >
+        Store
+      </Link>
+      <Link
+        to="/profile"
+        className="btn bg-cyan-100 text-cyan-600 m-3 p-2 rounded-2xl border-2 border-cyan-600 hover:bg-cyan-200"
+      >
+        Profile
+      </Link>
+
+      <main className="py-3">
+        <Outlet />
+      </main>
+    </>
+  );
 }
 
-      export default App;
+export default App;

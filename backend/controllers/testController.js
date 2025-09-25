@@ -1,8 +1,8 @@
 import testModel from "../models/testModel.js"
 
 const add_row = async (req, res) => {
-    const { id, name } = req.body;
-    const create = new testModel({ id, name })
+    const { id, name, array } = req.body;
+    const create = new testModel({ id, name, array })
     res.send(create)
     if (create) {
         create.save();
@@ -11,9 +11,29 @@ const add_row = async (req, res) => {
 
 }
 
+const learnMapping = async (req, res) => {
+    const { array } = req.body
+    // const total = array.reduce((sum, item) => sum + item.marks, 0);
+    // const any = await
+    // Promise.all(
+    //     array.map(async (item) => {
+    //     console.log(item)
+    //     console.log(item.marks)
+    //     return item.marks
+    // })
+    // ).reduce((sum,num)=>sum+num,0)
+    const any = await Promise.all(
+        array.map(async (item) => {
+            console.log(item)
+            return item.marks + 2
+        })
+    ).reduce((sum, item) => sum + item, 0);
+    res.send(any)
+}
+
 const getFiltered = async (req, res) => {
     try {
-        const pageSize = 2; 
+        const pageSize = 2;
 
         const page = Number(req.query.page) || 1;
 
@@ -56,16 +76,16 @@ const getFiltered = async (req, res) => {
     }
 };
 
-const testNull = async(req,res)=>{
+const testNull = async (req, res) => {
     const anything = null;
-    if(anything){
+    if (anything) {
         console.log("if anything");
     }
-    if(anything !== null ){
+    if (anything !== null) {
         console.log("if anything not null");
     }
     console.log("end");
-    
+
 }
 
 const addWithForm = async (req, res) => {
@@ -74,7 +94,7 @@ const addWithForm = async (req, res) => {
     console.log({ id, name, array })
 }
 
-const showMessage = async(req,res)=>{
+const showMessage = async (req, res) => {
     // res.send("Backend message reached")
     // return res.status(404).send("Not Found")
     try {
@@ -90,5 +110,6 @@ export {
     testNull,
     getFiltered,
     addWithForm,
-    showMessage
+    showMessage,
+    learnMapping
 }

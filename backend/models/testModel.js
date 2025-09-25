@@ -8,7 +8,12 @@ const TestSchema = mongoose.Schema({
         type: String
     },
     array : [{
-        type : String,
+        "name":{
+            type:String
+        },
+        'marks':{
+            type:Number
+        }
     }]
 })
 
